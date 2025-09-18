@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* reusable input styles */
+.input {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500;
+  @apply border rounded p-2 w-full;
+}
+
+/* reusable button styles */
+.btn {
+  @apply w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition;
+  @apply px-4 py-2 rounded cursor-pointer;
+}
