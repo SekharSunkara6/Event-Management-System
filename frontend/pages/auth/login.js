@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 export default function Login() {
   const [form, setForm] = useState({ username: "", password: "" });
   const router = useRouter();
@@ -11,7 +13,7 @@ export default function Login() {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8000/login", new URLSearchParams(form).toString(), {
+      const res = await axios.post(`${API_BASE_URL}/login`, new URLSearchParams(form).toString(), {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       });
       localStorage.setItem("token", res.data.access_token);

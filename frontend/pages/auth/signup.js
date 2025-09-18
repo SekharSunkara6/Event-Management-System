@@ -1,7 +1,8 @@
-// pages/auth/signup.js
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export default function Signup() {
   const [form, setForm] = useState({ name: "", email: "", password: "", role: "normal" });
@@ -12,7 +13,7 @@ export default function Signup() {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8000/signup", form);
+      await axios.post(`${API_BASE_URL}/signup`, form);
       alert("Signup successful! Please login.");
       router.push("/auth/login");
     } catch (error) {

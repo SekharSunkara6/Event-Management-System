@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import AdminEventForm from "../../components/AdminEventForm";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 export default function AdminEvents() {
   const [events, setEvents] = useState([]);
   const [editingEvent, setEditingEvent] = useState(null);
@@ -9,7 +11,7 @@ export default function AdminEvents() {
 
   const fetchEvents = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/events", {
+      const res = await axios.get(`${API_BASE_URL}/events`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEvents(res.data);
@@ -25,7 +27,7 @@ export default function AdminEvents() {
   const handleDelete = async (id) => {
     if (!confirm("Are you sure you want to delete this event?")) return;
     try {
-      await axios.delete(`http://localhost:8000/events/${id}`, {
+      await axios.delete(`${API_BASE_URL}/events/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchEvents();

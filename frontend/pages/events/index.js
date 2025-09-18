@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import EventCard from "../../components/EventCard";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 export default function Events() {
   const [events, setEvents] = useState([]);
 
@@ -9,7 +11,7 @@ export default function Events() {
     const fetchEvents = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:8000/events", {
+        const res = await axios.get(`${API_BASE_URL}/events`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setEvents(res.data);
