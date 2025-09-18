@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
 from .database import SessionLocal, create_tables
-from app import models, crud, schemas, auth
+from . import models, crud, schemas, auth
 
 app = FastAPI()
 
