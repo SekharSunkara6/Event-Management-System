@@ -90,3 +90,8 @@ def delete_event(event_id: int, db: Session = Depends(get_db), current_user: dic
     if not deleted_event:
         raise HTTPException(status_code=404, detail="Event not found")
     return {"detail": "Event deleted"}
+
+@app.get("/")
+def root():
+    return {"message": "Event Management System API"}
+
